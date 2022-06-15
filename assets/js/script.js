@@ -1,11 +1,17 @@
 // Assignment code here
-var upperCase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var upperCaseEl = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-var lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var lowerCaseEl = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-var number = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var numberEl = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-var symbols = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '[', ']', '<', '>', '/', '?']
+var symbolsEl = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '[', ']', '<', '>', '/', '?'];
+
+var selChars = [];
+
+var minLength = 8
+
+var maxLength = 128
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -20,10 +26,73 @@ function writePassword() {
 
 }
 
+function generatePassword() {
+
+
+  var pwLength = window.prompt("How many characters do you want your password to be?")
+  console.log(pwLength)
+
+  if (pwLength < minLength || pwLength > maxLength) {
+
+    window.alert("Your password must be at least " + minLength + " and no more than " + maxLength + ".")
+    generatePassword();
+
+  }
+
+  var upperCase = window.confirm("Do you want to use uppercase letters?")
+  var lowerCase = window.confirm("Do you want to use lower case letters?")
+  var number = window.confirm("Do you want to use numbers?")
+  var symbols = window.confirm("Do you want to use symbols?")
+  console.log(upperCase, lowerCase, number, symbols)
+
+  if (upperCase) {
+
+    selChars.push(...upperCaseEl)
+  }
+
+  if (lowerCase) {
+
+    selChars.push(...lowerCaseEl)
+  }
+
+  if (number) {
+
+    selChars.push(...numberEl)
+  }
+
+  if (symbols) {
+
+    selChars.push(...symbolsEl)
+  }
+
+  if (selChars.length == 0) {
+
+    window.alert("You must select at least one type of character input.")
+
+    generatePassword()
+  }
+
+
+
+  for (var i = 0; i < pwLength; i++) {
+
+    var randomChars = Math.floor(Math.random() * selChars.length);
+
+    randomChars += selChars[(randomChars, randomChars +1)];
+
+
+    return randomChars
+
+
+  }
+
+  }
+
+
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
 
 
 
-writePassword();
