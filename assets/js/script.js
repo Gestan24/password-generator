@@ -13,6 +13,8 @@ var minLength = 8
 
 var maxLength = 128
 
+var password = "";
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
@@ -28,6 +30,9 @@ function writePassword() {
 
 function generatePassword() {
 
+  var password = "";
+
+  selChars = [];
 
   var pwLength = window.prompt("How many characters do you want your password to be?")
   console.log(pwLength)
@@ -72,21 +77,21 @@ function generatePassword() {
     generatePassword()
   }
 
-
-
   for (var i = 0; i < pwLength; i++) {
 
-    var randomChars = Math.floor(Math.random() * selChars.length);
+    var randomIndex = Math.floor(Math.random() * selChars.length);
 
-    randomChars += selChars[(randomChars, randomChars +1)];
-
-
-    return randomChars
-
+    var password = password + selChars[randomIndex];
 
   }
 
-  }
+
+  return password;
+
+
+
+
+}
 
 
 
